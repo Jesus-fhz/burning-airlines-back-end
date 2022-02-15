@@ -4,10 +4,22 @@ Virgin Airlines <%= link_to 'Create Plane', new_airplane_path %>
 
 <h1>All Airplanes</h1>
 
+<table>
+
+    <tr>
+        <th>Plane Model</th>
+        <th>Rows</th>
+        <th>Columns</th>
+
 <% @airplanes.each do |a| %>
-    <%= link_to airplane_path(a.id) do %>
-    <li><%= a.name%></li>
-    <% end %>
+    <tr>
+        <td> <%= a.name%> </td>
+        <td> <%= a.rows %> </td>
+        <td> <%= a.columns %> </td>
+        <td><%= link_to 'Show', airplane_path(a.id) %></td>
+    </tr>
 <% end %>
+
+</table>
 
 <br>
