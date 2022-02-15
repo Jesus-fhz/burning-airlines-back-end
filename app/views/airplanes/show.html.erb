@@ -1,12 +1,12 @@
 <h1><%= @airplane.name %></h1>
 
-<div class="plane_seat">
+<div class="seat_details">
   <% @airplane.columns.times do %>
-  <div class="column">
+  <div class="columns">
     <p id = "column-letters"><%= @column_letters[@column] %></p>
 
     <% @airplane.rows.times do %>
-      <div class="seat">
+      <div class="seats">
         <%= @row %>
         <% @row += 1 %>
       </div>
