@@ -1,0 +1,25 @@
+<%= form_with model: @flight, local: true do |f| %>
+
+    <%= f.label :date %>
+    <br>
+    <%= f.date_field :date_flight %>
+    <br><br>
+    
+    <%= f.label :origin %>
+    <br>
+    <%= f.text_field :origin %>
+    <br><br>
+
+    <%= f.label :destination %>
+    <br>
+    <%= f.text_field :destination %>
+    <br><br>
+
+    <%= f.label :plane %>
+    <br>
+    <%= f.collection_select :airplane_id, Airplane.all, :id, :name, include_blank: true %>
+    <br><br>
+
+    <%= f.submit %>
+
+<% end %>

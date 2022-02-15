@@ -1,4 +1,7 @@
 class FlightsController < ApplicationController
+
+  before_action :check_if_logged_in
+
   def new
     @flight = Flight.new
   end
@@ -14,7 +17,6 @@ class FlightsController < ApplicationController
   end
 
   def show
-    @flight = Flight.find params[:id]
   end
 
   def edit
@@ -24,7 +26,7 @@ class FlightsController < ApplicationController
   def update
     flight = Flight.find params[:id]
     flight.update! flight_params
-    redirect_to flight_path(params[:id])
+    redirect_to flights_path
   end
 
   def destroy
