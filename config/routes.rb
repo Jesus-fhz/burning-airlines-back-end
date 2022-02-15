@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   delete '/login' =>'session#destroy'
   resources :flights
   resources :airplanes
+  resources :users
 
 
 
