@@ -1,0 +1,13 @@
+Virgin Airlines <%= link_to 'Create Plane', new_airplane_path %>
+
+<hr>
+
+<h1>All Airplanes</h1>
+
+<% @airplanes.each do |a| %>
+    <%= link_to airplane_path(a.id) do %>
+    <li><%= a.name%></li>
+    <% end %>
+<% end %>
+
+<br>

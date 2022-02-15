@@ -1,0 +1,27 @@
+.plane_name {
+    font-size: 30px;
+}
+
+.column {
+    text-align: center;
+    max-width: 20px;
+    padding: 10px;
+}
+  
+.plane_seat {
+    display: flex;
+}
+  
+.seat {
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+}
+  
+.seat p {
+    margin-top: 8px;
+}
+  
+span {
+    margin-left: 11px;
+}
