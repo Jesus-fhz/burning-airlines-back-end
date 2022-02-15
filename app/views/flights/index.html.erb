@@ -1,0 +1,30 @@
+<h2>All Flights</h2>
+
+<%= link_to 'Add New Flight', new_flight_path %>
+
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Flight</th>
+      <th>From > To</th>
+      <th>Plane</th>
+      <th>Seats</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @flights.each do |f|%>
+      <tr>
+        <td><%= f.date_flight %></td>
+        <td><%= link_to f.id, flight_path(f) %></td>
+        <td><%= f.origin %> > <%= f.destination %></td>
+        <td><%= f.airplane.name%></td>
+        <td><%= f.airplane.rows * f.airplane.columns%></td>
+      </tr>
+    <% end%>
+  </tbody>
+</table>
+
+
