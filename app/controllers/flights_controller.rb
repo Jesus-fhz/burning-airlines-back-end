@@ -1,7 +1,8 @@
 class FlightsController < ApplicationController
 
   before_action :fetch_user
-  before_action :check_if_logged_in, only: [:new, :create, :edit, :update, :destroy]
+
+  before_action :check_if_logged_in, only: [:new, :edit, :destroy, :create]
 
   def new
     @flight = Flight.new
@@ -9,16 +10,13 @@ class FlightsController < ApplicationController
 
   def create
     Flight.create flight_params
-
     redirect_to flights_path
   end
 
   def index
-    @flights = Flight.all
+    @flights = Flight.all.order('date_flight ASC')
   end
 
-  def show
-  end
 
   def edit
     @flight = Flight.find params[:id]
