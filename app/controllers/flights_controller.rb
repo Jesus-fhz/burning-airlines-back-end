@@ -41,6 +41,7 @@ class FlightsController < ApplicationController
 
     flights = Flight.where("origin ILIKE ? and destination ILIKE ?", "%#{params[:origin]}%", "%#{params[:destination]}%")
     if flights.any?
+
         render json: flights
     else    
         render json: {error: "No flights found"}, status: 404
