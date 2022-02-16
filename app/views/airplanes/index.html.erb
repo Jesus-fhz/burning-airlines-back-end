@@ -1,25 +1,37 @@
-Virgin Airlines <%= link_to 'Create Plane', new_airplane_path %>
+<div class="container p-4"> 
+        <div class="row">
+             <div class="col-md-12">
+                <h4>Virgin Airlines </h3> 
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-center my-5"> 
+            <div class="card col-md-8">
+                <div class="card-header d-flex justify-content-between">
+                    <div> <h4>All Airplanes</h4> </div>
+                    <div> <%= link_to 'Create Plane', new_airplane_path, :class => 'btn btn-outline-danger' %></div>
+                </div>
+                <div class="card-body">
+                    <table class="table  table-hover table-bordered">
 
-<hr>
+                <tr class="bg-light"> 
+                    <th>Plane Model</th>
+                    <th>Rows</th>
+                    <th>Columns</th>
+                    <th> Actions </th>
 
-<h1>All Airplanes</h1>
+            <% @airplanes.each do |a| %>
+                <tr>
+                    <td> <%= a.name%> </td>
+                    <td> <%= a.rows %> </td>
+                    <td> <%= a.columns %> </td>
+                    <td><%= link_to 'Show', airplane_path(a.id) %></td>
+                </tr>
+            <% end %>
 
-<table>
-
-    <tr>
-        <th>Plane Model</th>
-        <th>Rows</th>
-        <th>Columns</th>
-
-<% @airplanes.each do |a| %>
-    <tr>
-        <td> <%= a.name%> </td>
-        <td> <%= a.rows %> </td>
-        <td> <%= a.columns %> </td>
-        <td><%= link_to 'Show', airplane_path(a.id) %></td>
-    </tr>
-<% end %>
-
-</table>
-
-<br>
+        </table>
+                </div>
+                </div>
+        </div>
+           
+</div>

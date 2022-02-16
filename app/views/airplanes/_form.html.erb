@@ -1,16 +1,15 @@
-<%= form_with model: @airplane, local: true do |f| %>
-
-    <%= f.label :name %>
-    <%= f.text_field :name, :required => true %>
-
-    <%= f.label :rows %>
-    <%= f.number_field :rows, :required => true %>
-
-    <%= f.label 'Cols' %>
-    <%= f.number_field :columns, :required => true %>
-
-    <br>
-    <%= f.submit 'Save' %>
-
-<% end %>
-
+<div class="row">
+    <div class="col-md-12">
+        <%= form_with model: @airplane, local: true do |f| %>
+            <%= f.label :name, :class=> "form-label" %>
+            <%= f.text_field :name,:class=> "form-control" , :required => true %>
+            <%= f.label :rows, :class=> "form-label" %>
+            <%= f.number_field :rows,  :class=>'form-control', :required => true %>
+            <%= f.label :Columns, :class=> 'form-label'  %>
+            <%= f.number_field :columns,:class=> 'form-control', :required => true %>
+            <%= f.submit 'Save',  :class => 'btn btn-primary col-md-2 my-3' %>
+        <% end %>
+    </div>
+</div>
+ 
+                            

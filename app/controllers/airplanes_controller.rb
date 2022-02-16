@@ -15,7 +15,6 @@ class AirplanesController < ApplicationController
 
   def show
     @airplane = Airplane.find params[:id]
-
     @row = 1
     @column = 0
     @column_letters = ('A'..'Z').to_a

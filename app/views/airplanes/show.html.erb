@@ -1,23 +1,43 @@
-<h1><%= @airplane.name %></h1>
-
-<div class="seat_details">
-  <% @airplane.columns.times do %>
-  <div class="columns">
-    <p id = "column-letters"><%= @column_letters[@column] %></p>
-
-    <% @airplane.rows.times do %>
-      <div class="seats">
-        <%= @row %>
-        <% @row += 1 %>
+<div class="container p-4"> 
+      <div class="row">
+            <div class="col-md-12">
+              <h4><%= @airplane.name %> </h3> 
+          </div>
       </div>
-    <% end %>
-  </div>
+      <hr>
+      <div class="d-flex justify-content-center my-5"> 
+            <div class="card col-md-12">
+                <div class="card-header d-flex justify-content-between">
+                    <div> <h4>Seat Map </h4> </div>
+                    <div> 
+                      <%= link_to 'Edit', edit_airplane_path(@airplane), :class => 'btn btn-outline-danger' %> 
+                      <%= link_to 'Delete', airplane_path(@airplane),:class => 'btn btn-outline-danger', method: 'delete' %>
+                      <%= link_to 'Go Back', airplanes_path, :class => 'btn btn-outline-danger' %>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="seat_details ">
+                        <% @airplane.rows.times do %>
+                        <div class="columns ">
+                          <p id = "column-letters text-center"><%= @column_letters[@column] %></p>
+                          <% @airplane.columns.times do %>
+                            <div class="seats">
+                              <%= @row %>
+                              <% @row += 1 %>
+                            </div>
+                          <% end %>
+                        </div>
 
-  <% @row = 1 %>
-  <% @column += 1 %>
-  <% end %>
+                        <% @row = 1 %>
+                        <% @column += 1 %>
+                        <% end %>
+                      </div>
+                </div>
+                </div>
+        </div>
 </div>
 
-<%= link_to 'Edit', edit_airplane_path(@airplane) %> |
-<%= link_to 'Back', airplanes_path %>
-<%= link_to 'Delete', airplane_path(@airplane), method: 'delete' %>
+
+
+
+

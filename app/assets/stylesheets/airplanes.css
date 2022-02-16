@@ -1,11 +1,11 @@
 .columns {
     text-align: center;
-    max-width: 20px;
     padding: 10px;
 }
   
 .seat_details {
     display: flex;
+    justify-content: center;
 }
   
 .seats {
