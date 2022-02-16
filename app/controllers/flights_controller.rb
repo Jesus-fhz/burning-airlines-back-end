@@ -1,7 +1,9 @@
 class FlightsController < ApplicationController
 
-  before_action :check_if_logged_in, only: [:new, :edit, :destroy]
   before_action :fetch_user
+  before_action :check_if_logged_in, only: [:new, :edit, :destroy, :create]
+
+  
 
   def new
     @flight = Flight.new
@@ -9,7 +11,6 @@ class FlightsController < ApplicationController
 
   def create
     Flight.create flight_params
-
     redirect_to flights_path
   end
 
