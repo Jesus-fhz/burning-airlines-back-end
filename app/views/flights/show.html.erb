@@ -1,0 +1,47 @@
+<div class="container p-4"> 
+      <div class="row">
+            <div class="col-md-12">
+              <h4> Flight details </h3> 
+          </div>
+      </div>
+      <hr>
+      <div class="d-flex justify-content-center my-5"> 
+            <div class="card col-md-12">
+                <div class="card-header d-flex justify-content-between">
+                    <div> <h4>Seat Map </h4> </div>
+                    <div> 
+                    
+                      <%= link_to 'Go Back', flights_path, :class => 'btn btn-outline-danger' %>
+                    </div>
+                </div>
+                <div class="card-body">
+                <p> Available Seats: <%= @seat_cal %> </P>
+                    <% @flight.reservations.each do |seats| %>
+                        <p>Row: <%= seats.row%></p>
+                        <p>Column: <%= seats.column%></p>
+                    <% end %>
+                    <div class="seat_details ">
+                        <% @flight.airplane.rows.times do %>
+                            <div class="columns ">
+                            <p id = "column-letters text-center"><%= @column_letters[@column] %></p>
+                            <% @flight.airplane.columns.times do %>
+                                <div class="seats">
+                                <%= @row %>
+                                <% @row += 1 %>
+                                </div>
+                            <% end %>
+                            </div>
+
+                            <% @row = 1 %>
+                            <% @column += 1 %>
+                            <% end %>
+                      </div>
+                </div>
+                </div>
+        </div>
+</div>
+
+
+
+
+

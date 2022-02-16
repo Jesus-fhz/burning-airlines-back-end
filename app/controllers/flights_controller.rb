@@ -15,6 +15,10 @@ class FlightsController < ApplicationController
 
   def index
     @flights = Flight.all.order('date_flight ASC')
+    
+    
+    # raise'hell'
+
   end
 
 
@@ -34,6 +38,7 @@ class FlightsController < ApplicationController
   end
 
   def search
+
     flights = Flight.where("lower(origin) like ? and lower(destination)like ?", "%#{params['origin'].downcase}%", "%#{params['destination'].downcase}%")
     
     if flights.any?      
@@ -43,7 +48,7 @@ class FlightsController < ApplicationController
         plane.push(f.airplane)  
       end
       
-        render json: {flight: flights,plane: plane}
+        render json: {flight: flights,plane: plane
     else    
         render json: {error: "No flights found"}, status: 404
     end

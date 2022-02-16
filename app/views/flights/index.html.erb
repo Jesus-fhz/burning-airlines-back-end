@@ -2,6 +2,7 @@
         <div class="row">
              <div class="col-md-12">
                 <h4>All Flights </h3> 
+
             </div>
         </div>
         <hr>
@@ -22,7 +23,8 @@
       <th>Flight</th>
       <th>From > To</th>
       <th>Plane</th>
-      <th>Seats</th>
+      <th>Total Seats</th>
+      <th>Available Seats</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -33,14 +35,21 @@
         <td><%= (sprintf 'BA-%02d', f.id) %></td>
         <td><%= f.origin %> > <%= f.destination %></td>
         <td><%= f.airplane.name%></td>
-        <td><%= f.airplane.rows * f.airplane.columns%></td>
+        <td><%= f.airplane.rows * f.airplane.columns %></td>
+        <td><%= (f.airplane.rows * f.airplane.columns) - f.reservations.count %></td>
+        
         <% if @current_user && @current_user.admin %>
+
           <td>
-            <%= link_to 'Edit', edit_flight_path(f) %>
+            <%= link_to 'Edit', edit_flight_path(f)%> 
             <%= link_to 'Delete', flight_path(f), method: 'delete' %>
           </td>
         <% end %>
     <% end%>
+
+
+
+
       </tr>
   </tbody>
 </table>
