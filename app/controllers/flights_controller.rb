@@ -1,6 +1,7 @@
 class FlightsController < ApplicationController
 
-  before_action :check_if_logged_in
+  before_action :check_if_logged_in, only: [:new, :edit, :destroy]
+  before_action :fetch_user
 
   def new
     @flight = Flight.new

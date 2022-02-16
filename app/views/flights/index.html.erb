@@ -1,6 +1,7 @@
 <h2>All Flights</h2>
-
-<%= link_to 'Create Flight', new_flight_path %>
+<% if @current_user && @current_user.admin %>
+  <%= link_to 'Create Flight', new_flight_path %>
+<% end %>
 
 <hr>
 
@@ -19,15 +20,17 @@
   <tbody>
     <% @flights.each do |f|%>
       <tr>
-        <td><%= f.date_flight %></td>
-        <td><%= link_to f.id, flight_path(f) %></td>
+        <td><%= f.date_flight.strftime("%d/%m/%Y") %></td>
+        <td><%= link_to (sprintf '%02d', f.id), flight_path(f) %></td>
         <td><%= f.origin %> > <%= f.destination %></td>
         <td><%= f.airplane.name%></td>
         <td><%= f.airplane.rows * f.airplane.columns%></td>
-        <td><%= link_to 'Edit', edit_flight_path(f) %></td>
-        <td><%= link_to 'Delete', flight_path(f), method: 'delete' %></td>
-      </tr>
+        <% if @current_user && @current_user.admin %>
+          <td><%= link_to 'Edit', edit_flight_path(f) %></td>
+          <td><%= link_to 'Delete', flight_path(f), method: 'delete' %></td>
+        <% end %>
     <% end%>
+      </tr>
   </tbody>
 </table>
 
