@@ -15,11 +15,9 @@ class FlightsController < ApplicationController
   end
 
   def index
-    @flights = Flight.all
+    @flights = Flight.all.order('date_flight ASC')
   end
 
-  def show
-  end
 
   def edit
     @flight = Flight.find params[:id]
