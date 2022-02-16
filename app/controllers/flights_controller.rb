@@ -33,6 +33,16 @@ class FlightsController < ApplicationController
     redirect_to flights_path
   end
 
+  def search
+    query = "#{params['origin']} #{params['destination']}" 
+    flights = Flight.where("lower(origin) like ? and lower(destination)like ?", "%#{params['origin'].downcase}%", "%#{params['destination'].downcase}%")
+    if flights.any?
+        render json: flights
+    else    
+        render json: {error: "No flights found"}, status: 404
+    end
+  end
+
   private
   def flight_params
     params.require(:flight).permit(
