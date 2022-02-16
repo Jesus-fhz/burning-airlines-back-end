@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/login' => 'session#create' 
   delete '/login' =>'session#destroy'
 
-  get '/flights/search/' =>'flights#search'
+  get '/flights/search' =>'flights#search'
 
   resources :flights
   resources :airplanes
