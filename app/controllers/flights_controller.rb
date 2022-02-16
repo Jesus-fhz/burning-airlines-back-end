@@ -34,10 +34,16 @@ class FlightsController < ApplicationController
   end
 
   def search
-    query = "#{params['origin']} #{params['destination']}" 
     flights = Flight.where("lower(origin) like ? and lower(destination)like ?", "%#{params['origin'].downcase}%", "%#{params['destination'].downcase}%")
-    if flights.any?
-        render json: flights
+    
+    if flights.any?      
+      plane = []
+  
+      flights.each do |f|
+        plane.push(f.airplane)  
+      end
+      
+        render json: {flight: flights,plane: plane}
     else    
         render json: {error: "No flights found"}, status: 404
     end
