@@ -1,13 +1,21 @@
-<h2>All Flights</h2>
-<% if @current_user && @current_user.admin %>
-  <%= link_to 'Create Flight', new_flight_path %>
-<% end %>
+<div class="container p-4"> 
+        <div class="row">
+             <div class="col-md-12">
+                <h4>All Flights </h3> 
+            </div>
+        </div>
+        <hr>
 
-<hr>
-
-<br>
-
-<table>
+<div class="d-flex justify-content-center my-5"> 
+            <div class="card col-md-8">
+                <div class="card-header d-flex justify-content-between">
+                    <div> <h4>Flights</h4> </div>
+                    <% if @current_user && @current_user.admin %>
+                      <div> <%= link_to 'Create Flight', new_flight_path, :class => 'btn btn-outline-danger' %></div>
+                    <% end %>
+                </div>
+                <div class="card-body">
+              <table class="table  table-hover table-bordered">
   <thead>
     <tr>
       <th>Date</th>
@@ -15,23 +23,35 @@
       <th>From > To</th>
       <th>Plane</th>
       <th>Seats</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @flights.each do |f|%>
       <tr>
         <td><%= f.date_flight.strftime("%d/%m/%Y") %></td>
-        <td><%= link_to (sprintf '%02d', f.id), flight_path(f) %></td>
+        <td><%= (sprintf 'BA-%02d', f.id) %></td>
         <td><%= f.origin %> > <%= f.destination %></td>
         <td><%= f.airplane.name%></td>
         <td><%= f.airplane.rows * f.airplane.columns%></td>
         <% if @current_user && @current_user.admin %>
-          <td><%= link_to 'Edit', edit_flight_path(f) %></td>
-          <td><%= link_to 'Delete', flight_path(f), method: 'delete' %></td>
+          <td>
+            <%= link_to 'Edit', edit_flight_path(f) %>
+            <%= link_to 'Delete', flight_path(f), method: 'delete' %>
+          </td>
         <% end %>
     <% end%>
       </tr>
   </tbody>
 </table>
 
+           
+
+                </div>
+                </div>
+        </div>
+
+
+
+</div>
 
