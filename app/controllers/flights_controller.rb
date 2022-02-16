@@ -38,8 +38,8 @@ class FlightsController < ApplicationController
   end
 
   def search
-    query = "#{params['origin']} #{params['destination']}" 
-    flights = Flight.where("origin ILIKE ? and destination ILIKE ?", "%#{params['origin']}%", "%#{params['destination']}%")
+
+    flights = Flight.where("origin ILIKE ? and destination ILIKE ?", "%#{params[:origin]}%", "%#{params[:destination]}%")
     if flights.any?
         render json: flights
     else    
