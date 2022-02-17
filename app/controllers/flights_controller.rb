@@ -1,7 +1,5 @@
 class FlightsController < ApplicationController
 
-  skip_before_action :verify_authenticity_token,  raise: false
-
   before_action :fetch_user
 
   before_action :check_if_logged_in, only: [:new, :edit, :destroy, :create]
@@ -20,7 +18,6 @@ class FlightsController < ApplicationController
   end
 
   def show
-    headers['Access-Control-Allow-Origin'] = '*'
     flight = Flight.find params[:id ]
     plane = Airplane.find flight.airplane_id
     reservation = Reservation.where(flight_id: flight.id)
@@ -62,7 +59,7 @@ class FlightsController < ApplicationController
         plane.push(f.airplane)  
       end
       
-        render json: {flight: flights ,plane: plane}
+        render json: {flight: flights,plane: plane}
 
     else    
         render json: {error: "No flights found"}, status: 404
