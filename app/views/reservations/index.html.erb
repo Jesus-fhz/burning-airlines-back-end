@@ -24,7 +24,6 @@
 
                 <tbody>
                 <% @current_user.reservations.each do |r| %>
-
                     <tr>
                         <td><%= r.flight.date_flight.strftime("%d/%m/%Y") %></td>
                         <td><%= r.flight.origin %></td>
