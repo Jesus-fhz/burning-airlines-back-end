@@ -19,6 +19,7 @@
                 <tr class="bg-light">
                     <th>Depart date</th>
                     <th>Depart from</th>
+                    <th>Arrive at</th>
                     <th>Flight</th>
                     <th>Actions</th>
 
@@ -26,9 +27,10 @@
                 <% @current_user.reservations.each do |r| %>
 
                     <tr>
-                        <td><%= r.flight.date_flight %></td>
+                        <td><%= r.flight.date_flight.strftime("%d/%m/%Y") %></td>
                         <td><%= r.flight.origin %></td>
-                        <td><%= (sprintf 'BA-%02d', r.id) %></td>
+                        <td><%= r.flight.destination %></td>
+                        <td><%= (sprintf 'BA-%02d', r.flight_id) %></td>
                         <td><%= link_to 'View', reservation_path(r.id) %></td>
                     </tr>
                 <% end %>

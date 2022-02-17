@@ -23,7 +23,7 @@ class FlightsController < ApplicationController
     headers['Access-Control-Allow-Origin'] = '*'
     flight = Flight.find params[:id ]
     plane = Airplane.find flight.airplane_id
-    reservation = Reservation.find_by(flight_id: flight.id)
+    reservation = Reservation.where(flight_id: flight.id)
     current_seat = flight.reservations.count
     total_seat = flight.airplane.rows * flight.airplane.columns
     seat_cal = total_seat - current_seat
