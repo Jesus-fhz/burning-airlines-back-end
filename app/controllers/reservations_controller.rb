@@ -4,7 +4,14 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    Reservation.create reservation_params
+    result = Reservation.create reservation_params
+    if result.persisted?
+      render json: result
+    else
+      render json: {error: "There was an error booking"}
+    end
+    
+    
   end
 
   def index
