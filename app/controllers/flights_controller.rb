@@ -15,10 +15,22 @@ class FlightsController < ApplicationController
 
   def index
     @flights = Flight.all.order('date_flight ASC')
-    
-    
-    # raise'hell'
 
+  end
+
+  def show
+    flight = Flight.find params[:id ]
+    plane = Airplane.find flight.airplane_id
+    reservation = Reservation.find_by(flight_id: flight.id) 
+
+    respond_to do |format|
+      if @flight.show
+        format.html {}
+        render.json { flight: flight, plane: plane, reservation: reservation}
+      else
+        render.json {flight error: "No details found"}
+      end
+    end
   end
 
 
