@@ -48,7 +48,7 @@ class FlightsController < ApplicationController
         plane.push(f.airplane)  
       end
       
-        render json: {flight: flights,plane: plane
+        render json: {flight: flights,plane: plane}
     else    
         render json: {error: "No flights found"}, status: 404
     end
