@@ -1,26 +1,24 @@
-<%= form_with model: @user, local: true, html: {multipart: true} do |f| %>
+<div class="row">
+    <div class="col-md-12">
 
-    <%= f.label :email, "Email Address" %>
-    <br>
-    <%= f.text_field :email %>
-    <br><br>
+        <%= form_with model: @user, local: true, html: {multipart: true} do |f| %>
 
-    <%= f.label :password %>
-    <br>
-    <%= f.password_field :password %>
-    <br><br>
+            <%= f.label :email, "Email Address", :class=>'form-label' %>
+            <%= f.text_field :email, :class=>'form-control', required: "true" %>
 
-    <%= f.label :password, "Confirm Password" %>
-    <br>
-    <%= f.password_field :password_confirmation %>
-    <br><br>
- 
-    <%= f.label :name %>
-    <br>
-    <%= f.text_field :name %>
-    <br><br>
+            <%= f.label :password, :class=>'form-label' %>
+            <%= f.password_field :password, :class=>'form-control', required: "true" %>
+
+            <%= f.label :password, "Confirm Password", :class=>'form-label' %>
+            <%= f.password_field :password_confirmation, :class=>'form-control', required: "true" %>
+        
+            <%= f.label :name, :class=>'form-label' %>
+            <%= f.text_field :name, :class=>'form-control', required: "true" %>
 
 
-    <%= f.submit %>
+            <%= f.submit :class => 'btn btn-primary col-md-2 my-3' %>
 
-<% end %>
+        <% end %>
+
+    </div>
+</div>
