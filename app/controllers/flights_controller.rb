@@ -1,5 +1,7 @@
 class FlightsController < ApplicationController
 
+  skip_before_action :verify_authenticity_token,  raise: false
+
   before_action :fetch_user
 
   before_action :check_if_logged_in, only: [:new, :edit, :destroy, :create]
@@ -15,24 +17,21 @@ class FlightsController < ApplicationController
 
   def index
     @flights = Flight.all.order('date_flight ASC')
-
   end
 
   def show
+    headers['Access-Control-Allow-Origin'] = '*'
     flight = Flight.find params[:id ]
     plane = Airplane.find flight.airplane_id
-    reservation = Reservation.find_by(flight_id: flight.id) 
-
+    reservation = Reservation.find_by(flight_id: flight.id)
     current_seat = flight.reservations.count
     total_seat = flight.airplane.rows * flight.airplane.columns
     seat_cal = total_seat - current_seat
-
-
-      if flight
-        render json: {flight: flight, plane: plane, reservation: reservation, available_seat: seat_cal}
-      else
-        render json: { error: "No details found"}
-      end
+    if flight
+      render json: {flight: flight, plane: plane, reservation: reservation, available_seat: seat_cal}
+    else
+      render json: { error: "No details found"}
+    end
   end
 
 
@@ -64,6 +63,7 @@ class FlightsController < ApplicationController
       end
       
         render json: {flight: flights ,plane: plane}
+
     else    
         render json: {error: "No flights found"}, status: 404
     end
