@@ -1,10 +1,17 @@
 class ReservationsController < ApplicationController
+  skip_before_action :verify_authenticity_token,  raise: false
+
   def new
     @reservation = Reservation.new
   end
 
   def create
-    result = Reservation.create reservation_params
+    result = Reservation.create(
+      user_id: params[:user_id],
+      flight_id: params[:flight_id],
+      row: params[:row],
+      column: params[:column]
+    )
     if result.persisted?
       render json: result
     else
@@ -36,7 +43,7 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:row, :column, :user_id, :flight_id)
+    #params.require(:reservation).permit(:row, :column, :user_id, :flight_id)
   end
 
 
